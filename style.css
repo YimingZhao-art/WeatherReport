@@ -1,0 +1,441 @@
+body {
+  /* background-color: gray; */
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin: 5%;
+  padding: 10px;
+  width: 95%;
+  min-width: 1000px;
+}
+
+/* set the div direct son of body to be a flex container */
+body > div {
+  width: 90%;
+}
+
+.block {
+  box-shadow: 0 0 10px #999;
+}
+
+/* first row */
+
+#current-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#header-block,
+#my-data-block {
+  flex: 1;
+  margin: 0 5px; /* Optional: adds some space between the blocks */
+  height: 20rem;
+}
+
+#my-data-block {
+  background-color: #f3fff3;
+}
+
+/* -------------------------------------------------------
+    * 1st row
+    * ------------------------------------------------------- */
+
+#header-block {
+  background-image: url("images/blue-sky.jpg");
+  /* if the size is larger than img, let the img scale up to fit the size */
+  background-size: cover;
+  position: relative;
+}
+
+#current-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+}
+
+#header-block h2 {
+  font-size: 3em;
+  /* text-align: center; */
+  margin-left: 30px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+#uv-icon {
+  height: 1em;
+  width: 1em;
+}
+
+.weather-detail {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  flex-direction: row; /* 修改这里 */
+  flex-wrap: wrap;
+}
+
+#humidity,
+#rainfall,
+#temperature,
+#weather-icon {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  font-size: 2em;
+}
+
+#weather-icon img {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.number-info img {
+  width: 1em;
+  height: 1em;
+}
+
+.number-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.info-value {
+  font-size: 2em;
+}
+
+sup {
+  position: relative;
+  top: -0.25em;
+  right: 0;
+}
+
+.info-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#uv-level {
+  text-align: center;
+  font-size: 2em;
+}
+
+#warning-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #ef8c8a;
+  height: fit-content;
+  width: fit-content;
+  padding-left: 10px;
+  display: flex;
+  /* justify-content: space-around; */
+  flex-direction: column;
+}
+
+#toggle-warning {
+  flex-grow: 1;
+  background-color: #ef8c8a;
+  font-size: 1em;
+  /* no border */
+  border: none;
+  font-weight: bold;
+}
+
+#warning-message {
+  margin-left: 10px;
+  font-size: 10px;
+  /* font color */
+  color: black;
+  /* display: none; */
+  /* background-color: #ef8c8a; */
+}
+
+#last-update {
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  font-size: 1em;
+}
+
+#my-data-block h2 {
+  font-size: 3em;
+  /* text-align: center; */
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+#current-location {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#my-aqhi,
+#my-rainfall,
+#my-temperature {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  font-size: 2em;
+}
+
+#my-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+}
+
+#my-aqhi-icon {
+  width: 2em;
+  height: 2em;
+}
+
+#aqhi-number {
+  font-size: 1em;
+}
+#aqhi-quality {
+  font-size: 0.5em;
+}
+
+/* -------------------------------------------------------
+    * 2nd row
+    * ------------------------------------------------------- */
+/* second row */
+
+#location-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.target-weather {
+  justify-content: flex-start;
+  display: flex;
+  align-items: flex-start;
+  height: 50%;
+  flex-direction: column;
+}
+
+.select-num-info {
+  font-size: 5em;
+}
+
+.block-target-location-block {
+  flex: 1;
+  /* margin: 0 20px; Optional: adds some space between the blocks */
+  margin: 0 5px;
+  height: 20rem;
+  padding-left: 2%;
+  box-shadow: 0 0 10px #999;
+}
+
+#target-location-block-1 {
+  background-color: #f3ffff;
+}
+#target-location-block-2 {
+  background-color: #fdf8e8;
+}
+#target-location-block-3 {
+  background-color: #dfdfe1;
+}
+
+#selected-location-ahqi,
+#selected-location-ahqi-level {
+  font-size: 2rem;
+}
+
+#location-select-1,
+#location-select-2 {
+  /* width: 80%;
+  height: 10%; */
+  /* margin-left: 5%; */
+  /* height: 100%; */
+  background-color: #ddd9d6;
+  font-size: 1em;
+}
+
+#location-select-3 {
+  /* width: 60%;
+  height: 10%; */
+  background-color: #cecfd1;
+  font-size: 1em;
+}
+
+.block-target-location-block h2 {
+  font-size: 2em;
+  /* text-align: center; */
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------
+    * 3rd row
+    * ------------------------------------------------------- */
+/* third row */
+
+#forecast-block h2 {
+  font-size: 2em;
+  /* text-align: center; */
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+#forecast-block {
+  margin-top: 1rem;
+  margin: 0 0 0 5px;
+  background-color: #efeff9;
+}
+
+#forecast-day {
+  display: flex;
+  justify-content: space-around;
+  /* box-shadow: 0 0 10px #999; */
+}
+
+.day-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 15rem;
+  width: auto;
+}
+
+.nineday-weather-icon,
+.nineday-weather-psr-icon {
+  width: 4em;
+  height: 4em;
+}
+
+@media (max-width: 500px) {
+  body {
+    /* background-color: gray; */
+    font-family: "Roboto", sans-serif;
+    margin: 10px;
+    font-size: 8px;
+    padding: 10px;
+    width: 90%;
+    min-width: 300px;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+  }
+
+  /* set the div direct son of body to be a flex container */
+  body > div {
+    width: 100%;
+  }
+
+  .block2-a {
+    /* the a tag after h2 tag */
+    font-size: 2em;
+  }
+
+  #current-location {
+    font-size: 2em;
+  }
+
+  #current-info-container,
+  #location-container {
+    flex-direction: column;
+  }
+
+  #current-info-container {
+    height: fit-content;
+  }
+
+  #header-block,
+  #my-data-block {
+    margin: 5px, 5px;
+    height: 300px;
+  }
+
+  #current-weather {
+    margin-bottom: 2em;
+  }
+
+  .number-info {
+    width: auto;
+  }
+
+  .weather-detail:nth-of-type(2) {
+    flex-direction: row;
+  }
+
+  /* make rainfall and uv-level occupy the same width in 2nd weather-detail */
+  #rainfall,
+  #uv-level {
+    flex: 1 !important;
+    width: auto;
+    text-align: center;
+    justify-content: center;
+  }
+
+  #warning-container, #last-update {
+    font-size: 2em;
+  }
+
+  /* -------------------------------------------------------
+    * 2nd row
+    * ------------------------------------------------------- */
+  .block-target-location-block {
+    margin-top: 1em;
+  }
+
+  .select-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: fit-content;
+    width: 60%;
+    font-size: 5px;
+    margin-bottom: 20px;
+  }
+
+  sup {
+    position: relative;
+    top: -0.5em;
+    right: 0;
+  }
+
+  /* -------------------------------------------------------
+    * 3rd row
+    * ------------------------------------------------------- */
+
+  #forecast-block {
+    margin-top: 2em;
+    padding-left: 10px;
+    height: fit-content;
+    padding-bottom: 10px;
+    width: auto;
+  }
+
+  #forecast-day {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 20rem;
+  }
+
+  .day-data-container {
+    min-width: 80px;
+    height: fit-content;
+    padding-bottom: 10px;
+  }
+}

@@ -1,0 +1,393 @@
+<!-- 
+    Weather Icons list - https://www.hko.gov.hk/textonly/v2/explain/wxicon_e.htm You can get any weather icon via the following path, e.g. icon no. 63 https://www.hko.gov.hk/images/HKOWxIconOutline/pic63.png
+
+    PSR icons – We can borrow the icons from a HKO website:
+    https://www.hko.gov.hk/en/wxinfo/currwx/fnd.htm?tablenote=true
+        
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script async src="main.js"></script>
+    <title>My Weather Portal</title>
+  </head>
+  <body>
+    <h1>My Weather Portal</h1>
+    <div id="current-info-container">
+      <div id="header-block" class="block">
+        <h2>Hong Kong</h2>
+        <div id="current-weather">
+          <div class="weather-detail">
+            <div id="weather-icon">
+              <img src="./images/pic62.png" alt="Weather Icon" id="weather-img"/>
+            </div>
+            <div id="temperature" class="number-info">
+              <div class="info-value">28</div>
+              <sup><a style="font-size: 0.25em">°C</a></sup>
+            </div>
+            <div id="humidity" class="number-info">
+              <div class="info-value">72</div>
+              <div class="info-unit">
+                <img
+                  id="humidity-icon"
+                  src="./images/drop-64.png"
+                  alt="Humidity Icon"
+                />
+                %
+              </div>
+            </div>
+            <div id="rainfall" class="number-info">
+              <div class="info-value">0</div>
+              <div class="info-unit">
+                <img
+                  id="rainfall-icon"
+                  src="./images/rain-48.png"
+                  alt="Rainfall Icon"
+                />
+                mm
+              </div>
+            </div>
+          </div>
+          <div class="weather-detail">
+            <div id="uv-level" class="number-info">
+              <div class="info-value">0.6</div>
+              <div class="info-unit">
+                <img
+                  id="uv-icon"
+                  src="./images/UVindex-48.png"
+                  alt="UV Index Icon"
+                />
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--  a hidden to store the warning message -->
+        <div id="warning-container">
+          <button id="toggle-warning">Warnings</button>
+          <a id="warning-message" hidden>No warnings </a>
+        </div>
+        <div id="last-update">Last update: 09:02</div>
+      </div>
+
+      <div id="my-data-block" class="block">
+        <h2>My Location</h2>
+        <div id="current-location">
+          <div id="suburb" style="margin-right: 5px"></div>
+          <div id="district"></div>
+        </div>
+
+        <div id="my-weather">
+          <div class="weather-detail">
+            <div id="my-temperature" class="number-info">
+              <div class="info-value"></div>
+              <sup><a style="font-size: 0.25em">°C</a></sup>
+            </div>
+            <div id="my-rainfall" class="number-info">
+              <div class="info-value"></div>
+              <div class="info-unit">
+                <img
+                  id="my-rainfall-icon"
+                  src="./images/rain-48.png"
+                  alt="Rainfall Icon"
+                />
+                mm
+              </div>
+            </div>
+            <div id="my-aqhi" class="number-info">
+              <img
+                id="my-aqhi-icon"
+                src="./images/aqhi-low.png"
+                alt="Air Quality Icon"
+              />
+              <div class="info-unit">
+                <a id="aqhi-number"></a>
+
+                <a id="aqhi-quality"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="location-container">
+      <div id="target-location-block-1" class="block-target-location-block">
+        <h2>Temperatures</h2>
+        <a class="block2-a">Select the location</a>
+        <br />
+        <div class="location-content">
+          <div class="select-container">
+            <select id="location-select-1" class="location-select">
+              <!-- Location options here -->
+            </select>
+          </div>
+          <div id="target-weather-1" class="target-weather">
+            <!-- Target location's weather details here -->
+          </div>
+        </div>
+      </div>
+
+      <div id="target-location-block-2" class="block-target-location-block">
+        <h2>Rainfall</h2>
+        <a class="block2-a">Select the district</a>
+        <br />
+        <div class="location-content">
+          <div class="select-container">
+            <select id="location-select-2" class="location-select">
+              <!-- Location options here -->
+            </select>
+          </div>
+          <div id="target-weather-2" class="target-weather">
+            <!-- Target location's weather details here -->
+          </div>
+        </div>
+      </div>
+
+      <div id="target-location-block-3" class="block-target-location-block">
+        <h2>Air Quality</h2>
+        <a class="block2-a">Select the AQ station</a>
+        <br />
+        <div class="location-content">
+          <div class="select-container">
+            <select id="location-select-3" class="location-select">
+              <!-- Location options here -->
+            </select>
+          </div>
+          <div id="target-weather-3" class="target-weather">
+            <!-- Target location's weather details here -->
+            <div id="selected-location-ahqi"></div>
+            <div id="selected-location-ahqi-level"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="forecast-block" class="block">
+      <h2>9-Day Forecast</h2>
+
+      <div id="forecast-day">
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-1">Fri 1/9</div>
+          <div class="day-weather-icon" id="day-weather-icon-1">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-1">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-1">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-1">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-2">Sat 1/10</div>
+          <div class="day-weather-icon" id="day-weather-icon-2">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-2">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-2">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-2">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-3">Sun 1/11</div>
+          <div class="day-weather-icon" id="day-weather-icon-3">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-3">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-3">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-3">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-4">Mon 1/12</div>
+          <div class="day-weather-icon" id="day-weather-icon-4">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-4">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-4">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-4">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-5">Tue 1/13</div>
+          <div class="day-weather-icon" id="day-weather-icon-5">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-5">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-5">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-5">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-6">Wed 1/14</div>
+          <div class="day-weather-icon" id="day-weather-icon-6">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-6">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-6">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-6">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-7">Thu 1/15</div>
+          <div class="day-weather-icon" id="day-weather-icon-7">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-7">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-7">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-7">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-8">Fri 1/16</div>
+          <div class="day-weather-icon" id="day-weather-icon-8">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-8">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-8">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-8">
+            70-95 %
+          </div>
+        </div>
+
+        <div class="day-data-container">
+          <div class="day-date" id="day-date-9">Sat 1/17</div>
+          <div class="day-weather-icon" id="day-weather-icon-9">
+            <img
+              src="./images/pic62.png"
+              alt="Weather Icon"
+              class="nineday-weather-icon"
+            />
+          </div>
+          <div class="day-weather-psr-icon" id="day-weather-psr-icon-9">
+            <img
+              src="./images/PSRLow_50_light.png"
+              alt="PSR Icon"
+              class="nineday-weather-psr-icon"
+            />
+          </div>
+          <div class="day-temperature-range" id="day-temperature-range-9">
+            26-30 °C
+          </div>
+          <div class="day-humidity-range" id="day-humidity-range-9">
+            70-95 %
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
